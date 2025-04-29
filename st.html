@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>汕头五一4天旅游攻略</title>
+  <style>
+    body { font-family: 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif; background: #f7f8fa; margin: 0; }
+    .container { max-width: 700px; margin: 0 auto; padding: 0 8px 32px; }
+    .tabs { display: flex; border-bottom: 1px solid #eee; background: #fff; position: sticky; top: 0; z-index: 10; }
+    .tab { flex: 1; text-align: center; padding: 16px 0; cursor: pointer; font-weight: 500; color: #888; transition: color 0.2s; }
+    .tab.active { color: #1677ff; border-bottom: 2px solid #1677ff; background: #f0f6ff; }
+    .day-content { display: none; }
+    .day-content.active { display: block; }
+    .weather { margin: 16px 0 8px; color: #666; font-size: 15px; }
+    .card-list { display: flex; flex-direction: column; gap: 18px; }
+    .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px #0001; overflow: hidden; display: flex; flex-direction: column; }
+    .card-img { width: 100%; height: 180px; object-fit: cover; }
+    .card-body { padding: 14px 16px 10px; }
+    .card-title { font-size: 18px; font-weight: 600; margin-bottom: 6px; color: #222; }
+    .card-desc { font-size: 14px; color: #555; margin-bottom: 10px; }
+    .card-link { display: inline-block; padding: 7px 18px; background: #1677ff; color: #fff; border-radius: 6px; text-decoration: none; font-size: 15px; transition: background 0.2s; }
+    .card-link:hover { background: #1456b8; }
+    .amap-btn { margin: 28px auto 0; display: block; width: 90%; max-width: 400px; padding: 13px 0; background: linear-gradient(90deg,#1677ff,#49b1f5); color: #fff; font-size: 17px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; text-align: center; text-decoration: none; box-shadow: 0 2px 8px #1677ff22; }
+    @media (max-width: 600px) { .card-img { height: 140px; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 style="text-align:center;margin:22px 0 10px;font-weight:700;">汕头五一4天旅游攻略</h2>
+    <div class="tabs" id="tabs">
+      <div class="tab active">4月30日</div>
+      <div class="tab">5月1日</div>
+      <div class="tab">5月2日</div>
+      <div class="tab">5月3日</div>
+    </div>
+    <div class="day-content active">
+      <div class="weather">多云转阵雨，29~22℃</div>
+      <div class="card-list">
+        <div class="card">
+          <img class="card-img" src="https://store.is.autonavi.com/showpic/f435550d4a7e4828f39108c799e6d96f" alt="小公园">
+          <div class="card-body">
+            <div class="card-title">小公园</div>
+            <div class="card-desc">汕头地标，骑楼老街，感受潮汕历史风情。</div>
+            <a class="card-link" href="amapuri://navi?sourceApplication=amap_mcp&lon=116.670965&lat=23.353429&dev=1&style=2">高德地图导航</a>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img" src="http://store.is.autonavi.com/showpic/8a36fa11b769de658b3e1e698666f506" alt="汕头老城">
+          <div class="card-body">
+            <div class="card-title">汕头老城</div>
+            <div class="card-desc">历史文化街区，老建筑，潮汕文化体验。</div>
+            <a class="card-link" href="amapuri://navi?sourceApplication=amap_mcp&lon=116.670866&lat=23.353546&dev=1&style=2">高德地图导航</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="day-content">
+      <div class="weather">阵雨转多云，29~23℃</div>
+      <div class="card-list">
+        <div class="card">
+          <img class="card-img" src="http://store.is.autonavi.com/showpic/5e6cd5b15e23f6f6ecf1c132de17e24c" alt="礐石风景名胜区">
+          <div class="card-body">
+            <div class="card-title">礐石风景名胜区</div>
+            <div class="card-desc">山海景观，礐石大桥，观景拍照胜地。</div>
+            <a class="card-link" href="amapuri://navi?sourceApplication=amap_mcp&lon=116.681399&lat=23.316854&dev=1&style=2">高德地图导航</a>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img" src="http://store.is.autonavi.com/showpic/07d4b28be197f9998c4e106a4388c57a" alt="丹樱生态园">
+          <div class="card-body">
+            <div class="card-title">丹樱生态园</div>
+            <div class="card-desc">生态园林，赏花踏青，亲近自然。</div>
+            <a class="card-link" href="amapuri://navi?sourceApplication=amap_mcp&lon=116.650089&lat=23.2903&dev=1&style=2">高德地图导航</a>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img" src="http://store.is.autonavi.com/showpic/07537417aef4f4d8257976fd33da66f6" alt="莲花峰风景区">
+          <div class="card-body">
+            <div class="card-title">莲花峰风景区</div>
+            <div class="card-desc">自然风光，登山观景，远离城市喧嚣。</div>
+            <a class="card-link" href="amapuri://navi?sourceApplication=amap_mcp&lon=116.615382&lat=23.181023&dev=1&style=2">高德地图导航</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="day-content">
+      <div class="weather">多云，30~23℃</div>
+      <div class="card-list">
+        <div class="card">
+          <img class="card-img" src="http://store.is.autonavi.com/showpic/16a599cd0939eedcbab22ae01c4a26c6" alt="前美古村侨文化旅游区">
+          <div class="card-body">
+            <div class="card-title">前美古村侨文化旅游区</div>
+            <div class="card-desc">侨乡文化，古村落，历史人文体验。</div>
+            <a class="card-link" href="amapuri://navi?sourceApplication=amap_mcp&lon=116.745231&lat=23.567299&dev=1&style=2">高德地图导航</a>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img" src="http://store.is.autonavi.com/showpic/954f5f7bc837e60518f804103a86ed99" alt="东海岸公园">
+          <div class="card-body">
+            <div class="card-title">东海岸公园</div>
+            <div class="card-desc">滨海公园，休闲漫步，观海好去处。</div>
+            <a class="card-link" href="amapuri://navi?sourceApplication=amap_mcp&lon=116.681956&lat=23.354152&dev=1&style=2">高德地图导航</a>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img" src="http://aos-cdn-image.amap.com/sns/ugccomment/66d5e024-a466-47b1-989c-3504f4f9e8a8.jpg" alt="中山公园">
+          <div class="card-body">
+            <div class="card-title">中山公园</div>
+            <div class="card-desc">市区公园，休憩放松，适合散步。</div>
+            <a class="card-link" href="amapuri://navi?sourceApplication=amap_mcp&lon=116.681956&lat=23.354152&dev=1&style=2">高德地图导航</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="day-content">
+      <div class="weather">多云，30~23℃</div>
+      <div class="card-list">
+        <div class="card">
+          <img class="card-img" src="http://store.is.autonavi.com/showpic/9cc5347c71fb3c7addad234b691acee2" alt="南澳岛生态旅游区">
+          <div class="card-body">
+            <div class="card-title">南澳岛生态旅游区</div>
+            <div class="card-desc">跨海大桥，海岛风光，度假休闲。</div>
+            <a class="card-link" href="amapuri://navi?sourceApplication=amap_mcp&lon=117.0618&lat=23.434553&dev=1&style=2">高德地图导航</a>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img" src="http://store.is.autonavi.com/showpic/3e8c8a8842e5403f4c3478c3b3840fd8" alt="青澳湾">
+          <div class="card-body">
+            <div class="card-title">青澳湾</div>
+            <div class="card-desc">沙滩海水浴，海岛风情，亲海体验。</div>
+            <a class="card-link" href="amapuri://navi?sourceApplication=amap_mcp&lon=117.134104&lat=23.440855&dev=1&style=2">高德地图导航</a>
+          </div>
+        </div>
+        <div class="card">
+          <img class="card-img" src="http://store.is.autonavi.com/showpic/962882d5504a94dfdc10039d79a59abd" alt="南澳海岛国家森林公园">
+          <div class="card-body">
+            <div class="card-title">南澳海岛国家森林公园</div>
+            <div class="card-desc">原生态森林，观景登高，亲近自然。</div>
+            <a class="card-link" href="amapuri://navi?sourceApplication=amap_mcp&lon=117.011755&lat=23.438944&dev=1&style=2">高德地图导航</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const days = document.querySelectorAll('.day-content');
+    tabs.forEach((tab, idx) => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        days.forEach(d => d.classList.remove('active'));
+        tab.classList.add('active');
+        days[idx].classList.add('active');
+        window.scrollTo({top:0,behavior:'smooth'});
+      });
+    });
+  </script>
+</body>
+</html> 
