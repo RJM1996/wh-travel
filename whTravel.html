@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>威海旅游攻略 - 五一出行计划</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+        }
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #3498db, #1e5799);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #eceef1;
+        }
+        .weather-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .weather-card {
+            flex: 1;
+            min-width: 200px;
+            background: #f1f8fe;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .weather-date {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .weather-icon {
+            font-size: 2rem;
+            margin: 0.5rem 0;
+        }
+        .itinerary-day {
+            margin-bottom: 2rem;
+            border-left: 4px solid #3498db;
+            padding-left: 1.5rem;
+        }
+        .itinerary-day h3 {
+            color: #3498db;
+            margin-bottom: 1rem;
+        }
+        .itinerary-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dashed #eee;
+        }
+        .itinerary-item:last-child {
+            border-bottom: none;
+        }
+        .itinerary-time {
+            font-weight: bold;
+            color: #7f8c8d;
+            margin-right: 0.5rem;
+        }
+        .itinerary-place {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .itinerary-desc {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        .place-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .place-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .place-card:hover {
+            transform: translateY(-5px);
+        }
+        .place-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        .place-info {
+            padding: 1rem;
+        }
+        .place-name {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .place-address {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .place-detail {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .map-container {
+            width: 100%;
+            height: 500px;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .taxi-info {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f4f6f9;
+            border-radius: 8px;
+            border-left: 4px solid #f39c12;
+        }
+        .taxi-info h4 {
+            color: #f39c12;
+            margin-bottom: 0.5rem;
+        }
+        .btn {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: background 0.3s ease;
+        }
+        .btn:hover {
+            background: #2980b9;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            .weather-card {
+                min-width: 100%;
+            }
+            .place-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>威海旅游攻略</h1>
+        <p>五一假期 4.30-5.3 美丽海滨之旅</p>
+    </header>
+
+    <div class="container">
+        <section class="section">
+            <h2>行程概览</h2>
+            <p>威海是山东省的海滨城市，以优美的海岸线、清新的空气和丰富的历史文化景观而闻名。这份行程安排涵盖了威海的主要景点，让您在四天内充分体验威海的魅力。</p>
+            
+            <div class="weather-info">
+                <div class="weather-card">
+                    <div class="weather-date">4月30日 (周三)</div>
+                    <div class="weather-icon">☁️</div>
+                    <div>白天: 多云 22°C</div>
+                    <div>夜间: 雷阵雨 12°C</div>
+                    <div>风向: 南风</div>
+                </div>
+                <div class="weather-card">
+                    <div class="weather-date">5月1日 (周四)</div>
+                    <div class="weather-icon">☀️</div>
+                    <div>白天: 晴 20°C</div>
+                    <div>夜间: 阴 11°C</div>
+                    <div>风向: 西北风</div>
+                </div>
+                <div class="weather-card">
+                    <div class="weather-date">5月2日 (周五)</div>
+                    <div class="weather-icon">🌧️</div>
+                    <div>白天: 小雨 18°C</div>
+                    <div>夜间: 小雨 11°C</div>
+                    <div>风向: 北风</div>
+                </div>
+                <div class="weather-card">
+                    <div class="weather-date">5月3日 (周六)</div>
+                    <div class="weather-icon">🌤️</div>
+                    <div>返程日</div>
+                    <div>建议提前安排行程</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>详细行程安排</h2>
+            
+            <div class="itinerary-day">
+                <h3>Day 1 (4月30日) - 抵达与城市初体验</h3>
+                
+                <div class="itinerary-item">
+                    <div class="itinerary-time">14:00</div>
+                    <div class="itinerary-place">抵达威海</div>
+                    <div class="itinerary-desc">抵达威海，前往汉庭酒店（威海齐鲁商城店）办理入住。</div>
+                </div>
+                
+                <div class="itinerary-item">
+                    <div class="itinerary-time">15:30 - 17:00</div>
+                    <div class="itinerary-place">威海公园</div>
+                    <div class="itinerary-desc">游览威海标志性的公园，欣赏海景，参观海魂广场、海伢广场等景点。</div>
+                    <div class="taxi-info">
+                        <h4>打车信息</h4>
+                        <p>从汉庭酒店到威海公园约15分钟车程，打车费用约20-30元。</p>
+                    </div>
+                </div>
+                
+                <div class="itinerary-item">
+                    <div class="itinerary-time">17:00 - 18:30</div>
+                    <div class="itinerary-place">悦海公园</div>
+                    <div class="itinerary-desc">在悦海公园漫步，这里有标志性的灯塔和优美的海景，是观赏日落的绝佳去处。</div>
+                    <div class="taxi-info">
+                        <h4>打车信息</h4>
+                        <p>从威海公园到悦海公园步行即可，两个公园相距不远。</p>
+                    </div>
+                </div>
+                
+                <div class="itinerary-item">
+                    <div class="itinerary-time">19:00 - 21:00</div>
+                    <div class="itinerary-place">韩乐坊</div>
+                    <div class="itinerary-desc">前往韩乐坊夜市，品尝各种美食，体验中韩融合的文化氛围，购买特色纪念品。</div>
+                    <div class="taxi-info">
+                        <h4>打车信息</h4>
+                        <p>从悦海公园到韩乐坊约10分钟车程，打车费用约15-25元。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="itinerary-day">
+                <h3>Day 2 (5月1日) - 海滨风光之旅</h3>
+                
+                <div class="itinerary-item">
+                    <div class="itinerary-time">08:30 - 09:30</div>
+                    <div class="itinerary-place">酒店出发</div>
+                    <div class="itinerary-desc">早餐后从酒店出发，前往新威附路，欣赏沿途风景。</div>
+                </div>
+                
+                <div class="itinerary-item">
+                    <div class="itinerary-time">09:30 - 12:00</div>
+                    <div class="itinerary-place">新威附路与半月湾</div>
+                    <div class="itinerary-desc">游览新威附路沿线风景，随后前往半月湾沙滩，欣赏美丽的海湾风光，可以漫步沙滩，拍照留念。</div>
+                    <div class="taxi-info">
+                        <h4>打车信息</h4>
+                        <p>从酒店到新威附路约15分钟车程，打车费用约20-30元。从新威附路到半月湾约25分钟车程，打车费用约40-50元。</p>
+                    </div>
+                </div>
+                
+                <div class="itinerary-item">
+                    <div class="itinerary-time">12:00 - 14:00</div>
+                    <div class="itinerary-place">半月湾午餐</div>
+                    <div class="itinerary-desc">在半月湾附近享用海鲜午餐，品尝威海特色美食。</div>
+                </div>
+                
+                <div class="itinerary-item">
+                    <div class="itinerary-time">14:30 - 16:30</div>
+                    <div class="itinerary-place">猫头山</div>
+                    <div class="itinerary-desc">前往猫头山，登山观景，这里是俯瞰威海湾的绝佳位置，可以欣赏壮观的海景和城市风貌。</div>
+                    <div class="taxi-info">
+                        <h4>打车信息</h4>
+                        <p>从半月湾到猫头山约20分钟车程，打车费用约30-40元。</p>
+                    </div>
+                </div>
+                
+                <div class="itinerary-item">
+                    <div class="itinerary-time">17:00 - 19:00</div>
+                    <div class="itinerary-place">威海国际海水浴场</div>
+                    <div class="itinerary-desc">在威海国际海水浴场享受黄昏时分的海滩风光，漫步沙滩，感受海风的清爽。</div>
+                    <div class="taxi-info">
+                        <h4>打车信息</h4>
+                        <p>从猫头山到威海国际海水浴场约15分钟车程，打车费用约25-35元。</p>
+                    </div>
+                </div>
+                
+                <div class="itinerary-item">
+                    <div class="itinerary-time">19:30 - 21:00</div>
+                    <div class="itinerary-place">晚餐与休息</div>
+                    <div class="itinerary-desc">在海水浴场附近享用晚餐，之后返回酒店休息。</div>
+                    <div class="taxi-info">
+                        <h4>打车信息</h4>
+                        <p>从海水浴场回酒店约20分钟车程，打车费用约30-40元。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="itinerary-day">
+                <h3>Day 3 (5月2日) - 那香海一日游</h3>
+                
+                <div class="itinerary-item">
+                    <div class="itinerary-time">08:30 - 10:00</div>
+                    <div class="itinerary-place">前往那香海景区</div>
+                    <div class="itinerary-desc">早餐后从酒店出发，前往那香海景区，路程稍远，建议提前规划。</div>
+                    <div class="taxi-info">
+                        <h4>打车信息</h4>
+                        <p>从市区到那香海景区约50分钟车程，打车费用约100-120元，也可选择包车或公共交通。</p>
+                    </div>
+                </div>
+                
+                <div class="itinerary-item">
+                    <div class="itinerary-time">10:00 - 12:30</div>
+                    <div class="itinerary-place">那香海鸡鸣岛</div>
+                    <div class="itinerary-desc">游览那香海鸡鸣岛片区，欣赏美丽的海岛风光，参观奇石区和观海台等景点。</div>
+                </div>
+                
+                <div class="itinerary-item">
+                    <div class="itinerary-time">12:30 - 14:00</div>
+                    <div class="itinerary-place">景区午餐</div>
+                    <div class="itinerary-desc">在景区内享用午餐，休息片刻。</div>
+                </div>
+                
+                <div class="itinerary-item">
+                    <div class="itinerary-time">14:00 - 16:00</div>
+                    <div class="itinerary-place">布鲁斯沉船</div>
+                    <div class="itinerary-desc">前往布鲁维斯号搁浅巨轮观光点，这是一个独特的景观，可以近距离观赏搁浅的巨轮。</div>
+                    <div class="taxi-info">
+                        <h4>打车信息</h4>
+                        <p>在景区内可以使用景区交通工具或打车前往，约15-20分钟车程。</p>
+                    </div>
+                </div>
+                
+                <div class="itinerary-item">
+                    <div class="itinerary-time">16:30 - 18:00</div>
+                    <div class="itinerary-place">摩天岭索道</div>
+                    <div class="itinerary-desc">体验摩天岭索道，从高处俯瞰壮观的海岸线和风景。虽然摩天岭在成山头附近，如果当天行程紧张，可以调整为只游览那香海景区和布鲁斯沉船。</div>
+                    <div class="taxi-info">
+                        <h4>打车信息</h4>
+                        <p>从布鲁斯沉船到摩天岭索道如果在同一景区内约20分钟车程，如需前往成山头附近的摩天岭，则需约1小时车程。</p>
+                    </div>
+                </div>
+                
+                <div class="itinerary-item">
+                    <div class="itinerary-time">18:30 - 20:30</div>
+                    <div class="itinerary-place">返回市区晚餐</div>
+                    <div class="itinerary-desc">结束一天的游览，返回市区享用晚餐，休息。</div>
+                    <div class="taxi-info">
+                        <h4>打车信息</h4>
+                        <p>从那香海景区返回市区约50分钟车程，打车费用约100-120元。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="itinerary-day">
+                <h3>Day 4 (5月3日) - 轻松返程</h3>
+                
+                <div class="itinerary-item">
+                    <div class="itinerary-time">08:00 - 10:00</div>
+                    <div class="itinerary-place">酒店早餐与休闲</div>
+                    <div class="itinerary-desc">享用酒店早餐，收拾行李，在酒店附近轻松游览。</div>
+                </div>
+                
+                <div class="itinerary-item">
+                    <div class="itinerary-time">10:00 - 11:30</div>
+                    <div class="itinerary-place">购买特产</div>
+                    <div class="itinerary-desc">前往商业区购买威海特产作为纪念或馈赠亲友。</div>
+                </div>
+                
+                <div class="itinerary-item">
+                    <div class="itinerary-time">12:00</div>
+                    <div class="itinerary-place">返程</div>
+                    <div class="itinerary-desc">退房，前往火车站/机场返程。</div>
+                    <div class="taxi-info">
+                        <h4>打车信息</h4>
+                        <p>从酒店到火车站/机场约20-30分钟车程，打车费用约30-50元。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>地图路线</h2>
+            <div id="map-container" class="map-container"></div>
+            <div style="text-align: center;">
+                <a href="https://uri.amap.com/marker?position=122.042007,37.527536" class="btn" target="_blank">在高德地图打开威海国际海水浴场</a>
+                <a href="https://uri.amap.com/marker?position=122.190069,37.504524" class="btn" target="_blank">在高德地图打开猫头山</a>
+                <a href="https://uri.amap.com/marker?position=122.415268,37.404053" class="btn" target="_blank">在高德地图打开那香海景区</a>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>景点预览</h2>
+            <div class="place-cards">
+                <div class="place-card">
+                    <img src="http://store.is.autonavi.com/showpic/24fd9a03839c8247bb580de2157c0f80" alt="威海公园" class="place-img">
+                    <div class="place-info">
+                        <div class="place-name">威海公园</div>
+                        <div class="place-address">海滨中路58号</div>
+                        <div class="place-detail">
+                            <span>⭐ 4.8</span>
+                            <span>免费开放</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="place-card">
+                    <img src="https://aos-comment.amap.com/B027715AFE/comment/FC828A90_DF73_49B4_B0D6_B76431359341_L0_001_1170_1460_1738460483952_59149221.jpg" alt="悦海公园" class="place-img">
+                    <div class="place-info">
+                        <div class="place-name">悦海公园</div>
+                        <div class="place-address">皇冠街道滨海大道(近海上公园)</div>
+                        <div class="place-detail">
+                            <span>⭐ 4.7</span>
+                            <span>免费开放</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="place-card">
+                    <img src="http://store.is.autonavi.com/showpic/c5a864c41af1095dc75068f188675faf" alt="韩乐坊" class="place-img">
+                    <div class="place-info">
+                        <div class="place-name">韩乐坊</div>
+                        <div class="place-address">青岛中路附近</div>
+                        <div class="place-detail">
+                            <span>⭐ 4.6</span>
+                            <span>美食夜市</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="place-card">
+                    <img src="http://store.is.autonavi.com/showpic/c776c330a345cd21b833a579d1496412" alt="半月湾沙滩" class="place-img">
+                    <div class="place-info">
+                        <div class="place-name">半月湾沙滩</div>
+                        <div class="place-address">孙家疃镇环海路43附近</div>
+                        <div class="place-detail">
+                            <span>⭐ 4.8</span>
+                            <span>美丽海湾</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="place-card">
+                    <img src="https://aos-comment.amap.com/B0FFI6NFS2/comment/0325738F_509A_4B56_98C1_A643F0C675CC_L0_001_2000_1500_1728625103528_71297712.jpg" alt="猫头山" class="place-img">
+                    <div class="place-info">
+                        <div class="place-name">猫头山</div>
+                        <div class="place-address">孙家疃街道环海路北</div>
+                        <div class="place-detail">
+                            <span>⭐ 4.7</span>
+                            <span>观景胜地</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="place-card">
+                    <img src="http://store.is.autonavi.com/showpic/125caef497aceef3146494fc1d93371b" alt="威海国际海水浴场" class="place-img">
+                    <div class="place-info">
+                        <div class="place-name">威海国际海水浴场</div>
+                        <div class="place-address">北环海路178号</div>
+                        <div class="place-detail">
+                            <span>⭐ 4.9</span>
+                            <span>开放时间: 09:00-18:00</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="place-card">
+                    <img src="https://aos-comment.amap.com/B027716LHP/headerImg/1a9ce98fad3bd3eee1a6a01eefd27e3d_2048_2048_80.jpg" alt="那香海景区" class="place-img">
+                    <div class="place-info">
+                        <div class="place-name">那香海景区</div>
+                        <div class="place-address">环海路6699号</div>
+                        <div class="place-detail">
+                            <span>⭐ 4.8</span>
+                            <span>AAAA级景区</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="place-card">
+                    <img src="https://aos-comment.amap.com/B0KUFCRUR2/comment/57624603_AE58_4F63_8665_F69E43C6A3B2_L0_001_2000_1126_1744427021676_05868202.jpg" alt="布鲁维斯号搁浅巨轮" class="place-img">
+                    <div class="place-info">
+                        <div class="place-name">布鲁维斯号搁浅巨轮</div>
+                        <div class="place-address">环海路与古城路交叉口东500米</div>
+                        <div class="place-detail">
+                            <span>⭐ 4.5</span>
+                            <span>特色景观</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>出行提示</h2>
+            <ul style="padding-left: 1.5rem;">
+                <li>威海属于温带海洋性气候，四季温差不大，但早晚温差可能较大，建议带一件外套。</li>
+                <li>由于5月2日有小雨，前往那香海景区时建议准备雨具。</li>
+                <li>威海海鲜以鲜美著称，推荐品尝海胆、鲍鱼、扇贝等当地特色海鲜。</li>
+                <li>那香海景区和摩天岭距离市区较远，建议提前规划交通方式，可选择包车或租车。</li>
+                <li>韩乐坊夜市人流较多，请注意保管好随身物品。</li>
+                <li>半月湾和猫头山是拍照打卡的绝佳地点，可以准备合适的拍摄设备。</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>威海旅游攻略 - 五一出行计划 | 祝您旅途愉快!</p>
+    </footer>
+
+    <script type="text/javascript">
+        window.onload = function() {
+            // 创建地图容器
+            const mapContainer = document.getElementById('map-container');
+            
+            // 创建iframe嵌入高德地图
+            const mapIframe = document.createElement('iframe');
+            mapIframe.width = '100%';
+            mapIframe.height = '100%';
+            mapIframe.frameBorder = '0';
+            mapIframe.scrolling = 'no';
+            
+            // 设置地图URL - 使用您的行程路线
+            const mapUrl = 'https://uri.amap.com/plan/single?startplace=汉庭酒店威海齐鲁商城店,122.050507,37.504516,汉庭酒店&endplace=威海公园,122.120977,37.507894,威海公园&mode=car&policy=0&src=mypage&callnative=0';
+            mapIframe.src = mapUrl;
+            
+            // 将iframe添加到容器中
+            mapContainer.appendChild(mapIframe);
+            
+            // 在地图下方添加自定义路线链接
+            const linkContainer = document.createElement('div');
+            linkContainer.style.textAlign = 'center';
+            linkContainer.style.marginTop = '1rem';
+            
+            // 为每天的行程创建地图打开链接
+            const day1Link = document.createElement('a');
+            day1Link.href = 'https://uri.amap.com/plan/single?startplace=汉庭酒店威海齐鲁商城店,122.050507,37.504516,汉庭酒店&endplace=韩乐坊,122.052977,37.506642,韩乐坊&mode=car&policy=0&src=mypage&callnative=0';
+            day1Link.className = 'btn';
+            day1Link.textContent = '第一天行程导航';
+            day1Link.target = '_blank';
+            day1Link.style.marginRight = '10px';
+            
+            const day2Link = document.createElement('a');
+            day2Link.href = 'https://uri.amap.com/plan/single?startplace=汉庭酒店威海齐鲁商城店,122.050507,37.504516,汉庭酒店&endplace=半月湾,122.003063,37.542767,半月湾沙滩&mode=car&policy=0&src=mypage&callnative=0';
+            day2Link.className = 'btn';
+            day2Link.textContent = '第二天行程导航';
+            day2Link.target = '_blank';
+            day2Link.style.marginRight = '10px';
+            
+            const day3Link = document.createElement('a');
+            day3Link.href = 'https://uri.amap.com/plan/single?startplace=汉庭酒店威海齐鲁商城店,122.050507,37.504516,汉庭酒店&endplace=那香海景区,122.415268,37.404053,那香海景区&mode=car&policy=0&src=mypage&callnative=0';
+            day3Link.className = 'btn';
+            day3Link.textContent = '第三天行程导航';
+            day3Link.target = '_blank';
+            
+            linkContainer.appendChild(day1Link);
+            linkContainer.appendChild(day2Link);
+            linkContainer.appendChild(day3Link);
+            
+            mapContainer.after(linkContainer);
+        };
+    </script>
+</body>
+</html> 
